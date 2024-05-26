@@ -1,0 +1,67 @@
+<div class="container">
+        <h1 class="text-center">Art of AI auction</h1>
+
+        <div class="col-8 offset-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4 my-4">
+            <label class="form-label">Category:</label>
+            <select class="form-select" [(ngModel)]="selectedCategoryId" (change)="changed()">
+                <option selected value="0">All category</option>
+                <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-xl-4" *ngFor="let p of paintings">
+                <div class="card w-100">
+                    <img [src]="p.imageUrl" class="card-img-top p-3">
+                    <div class="card-body">
+                        <p class="card-text">
+                            {{ p.description }}
+                        </p>
+                        <hr>
+                        <p>
+                            Starting price: {{p.startingPrice}},- Ft
+                        </p>
+                        <p>
+                            @if (p.numberOfBids > 0) {
+                              Number of <span class="bids" data-bs-toggle="modal" data-bs-target="#exampleModal">bids</span>: {{ p.numberOfBids }}, highest bid: {{ p.maxBid }},- Ft
+                            }
+                            @else {
+                              Number of bids: 0
+                            }
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a class="btn btn-primary" (click)="bid(p.id, p.imageUrl)" >Bid</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Bids</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <table>
+            <tr>
+                <td>b************a&#64;elevel.hu</td>
+                <td>88999,- Ft</td>
+            </tr>
+            <tr>
+                <td>a**********z&#64;email.com</td>
+                <td>84999,- Ft</td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

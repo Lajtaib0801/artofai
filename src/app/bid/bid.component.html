@@ -1,0 +1,51 @@
+<div class="container">
+        <h1 class="text-center">Bidding</h1>
+
+
+        <div class="form col-10 offset-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 my-4">
+
+            <div class="mb-3">
+                <label for="car" class="form-label">Selected painting:</label>
+                <div class="text-center">
+                    <img [src]="imageUrl" alt="Place of selected painting"/>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Your e-mail address:</label>
+                <input type="text" class="form-control" id="email" [(ngModel)]="email">
+            </div>
+
+            <div class="mb-3">
+                <label for="offer" class="form-label">Offer (in HUF):</label>
+                <input type="number" class="form-control" id="offer" [(ngModel)]="offer">
+            </div>
+
+            <div class="mb-3">
+                <input type="checkbox" id="acceptedConditions" class="form-check-input" >
+                <label for="acceptedConditions" class="form-check-label" [(ngModel)]="tou">Accept terms of use</label>
+            </div>
+
+            <div class="mb-3 text-center">
+                <input type="button" value="Send offer" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#successfullBidModal" (click)="send()">
+            </div>
+
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="tou == false || tou == null || errMsg">
+                Please accept the terms of use!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    </div>
+
+    <div class="modal fade" id="successfullBidModal" tabindex="-1" *ngIf="showSuccess">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header mx-auto">
+              <h5 class="modal-title text-center">Your offer has been successfully registered</h5>
+            </div>
+            <div class="modal-footer mx-auto">
+              <a class="btn btn-secondary" href="paintings.html">Back to list</a>
+            </div>
+          </div>
+        </div>
+      </div>
